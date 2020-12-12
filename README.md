@@ -153,3 +153,44 @@ getRandomJoke(): Observable<Joke> {
 </div>
 <button>Get joke</button>
 ```
+
+## Step 7 - Find jokes
+
+`joke.service.ts`
+
+```typescript
+getJokes(contains?: string, type?: string): Observable<{ jokes: Joke[] }> {
+  return this.http.get<{ jokes: Joke[] }>(
+    `${JokeService.BASE_URL}/joke/Any`,
+    {
+      params: {
+        contains: contains,
+        type: type,
+        amount: '10',
+      },
+    }
+  );
+}
+```
+
+`app.component.ts`
+
+```typescript
+findJokes(contains: string, type: string) {
+  this.jokeService.getJokes(contains, type).subscribe((jokes) => {
+    console.log(jokes);
+  })
+}
+```
+
+`app.component.html`
+
+```html
+<input id="input" #contains />
+...
+<select id="select" #type>
+  ...
+</select>
+...
+<button (click)="findJokes(contains.value, type.value)">Get joke</button>
+```

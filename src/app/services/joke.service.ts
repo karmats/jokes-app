@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Joke } from '../models/joke';
 
 @Injectable({
@@ -13,5 +14,18 @@ export class JokeService {
 
   getRandomJoke(): Observable<Joke> {
     return this.http.get<Joke>(`${JokeService.BASE_URL}/joke/Any`);
+  }
+
+  getJokes(contains?: string, type?: string): Observable<{ jokes: Joke[] }> {
+    return this.http.get<{ jokes: Joke[] }>(
+      `${JokeService.BASE_URL}/joke/Any`,
+      {
+        params: {
+          contains: contains,
+          type: type,
+          amount: '10',
+        },
+      }
+    );
   }
 }

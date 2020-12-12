@@ -1,15 +1,15 @@
 <div>
   <label for="input">Contains text</label>
-  <input id="input" />
+  <input id="input" #contains />
 </div>
 <div>
   <label for="select">Type</label>
-  <select id="select">
+  <select id="select" #type>
     <option value="">Any</option>
     <option value="single">Single</option>
     <option value="twopart">Two part</option>
   </select>
 </div>
-<button>Get joke</button>
+<button (click)="findJokes(contains.value, type.value)">Get joke</button>
 
 <h1>{{ joke }}</h1>

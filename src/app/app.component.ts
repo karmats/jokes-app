@@ -19,4 +19,10 @@ export class AppComponent implements OnInit {
       }
     });
   }
+
+  findJokes(contains: string, type: string) {
+    this.jokeService.getJokes(contains, type).subscribe((jokes) => {
+      console.log(jokes);
+    })
+  }
 }
