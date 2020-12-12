@@ -133,3 +133,23 @@ getRandomJoke(): Observable<Joke> {
 ```html
 <h1>{{ joke }}</h1>
 ```
+
+## Step 6 - Search controls
+
+`app.component.html`
+
+```html
+<div>
+  <label for="input">Contains text</label>
+  <input id="input" />
+</div>
+<div>
+  <label for="select">Type</label>
+  <select id="select">
+    <option value="">Any</option>
+    <option value="single">Single</option>
+    <option value="twopart">Two part</option>
+  </select>
+</div>
+<button>Get joke</button>
+```
