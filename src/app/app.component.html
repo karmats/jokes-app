@@ -13,5 +13,5 @@
 <button (click)="findJokes(contains.value, type.value)">Get joke</button>
 
 <div>
-  <p *ngFor="let joke of jokes">{{ joke }}</p>
+  <app-joke-card *ngFor="let joke of jokes" [joke]="joke"></app-joke-card>
 </div>

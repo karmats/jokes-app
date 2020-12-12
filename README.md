@@ -234,3 +234,49 @@ export class AppComponent implements OnInit {
   <p *ngFor="let joke of jokes">{{ joke }}</p>
 </div>
 ```
+
+## Step 9 - Create a joke card component
+
+```bash
+$ ng g component components/joke-card
+```
+
+`joke-card.component.ts`
+
+```typescript
+export class JokeCardComponent implements OnInit {
+  @Input() joke: Joke;
+
+  text = "";
+
+  constructor() {}
+
+  ngOnInit(): void {
+    if (this.joke.type === "single") {
+      this.text = this.joke.joke;
+    } else {
+      this.text = `${this.joke.setup}\n${this.joke.delivery}`;
+    }
+  }
+}
+```
+
+`joke-card.component.html`
+
+```html
+<p>{{ text }}</p>
+```
+
+`app.component.ts`
+
+```typescript
+jokes: Joke[] = [];
+...
+this.jokes = result.jokes;
+```
+
+`app.component.html`
+
+```html
+<app-joke-card *ngFor="let joke of jokes" [joke]="joke"></app-joke-card>
+```
