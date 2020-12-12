@@ -109,3 +109,27 @@ getRandomJoke(): Observable<Joke> {
 }
 ```
 
+## Step 5 - Display the joke
+
+`app.component.ts`
+
+```typescript
+  joke = '';
+  constructor(private readonly jokeService: JokeService) {}
+
+  ngOnInit() {
+    this.jokeService.getRandomJoke().subscribe((joke) => {
+      if (joke.type === 'single') {
+        this.joke = joke.joke;
+      } else {
+        this.joke = `${joke.setup}\n${joke.delivery}`;
+      }
+    });
+  }
+```
+
+`app.component.html`
+
+```html
+<h1>{{ joke }}</h1>
+```
