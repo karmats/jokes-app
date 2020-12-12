@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Joke } from '../models/joke';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +11,7 @@ export class JokeService {
 
   constructor(private readonly http: HttpClient) {}
 
-  getRandomJoke() {
-    return this.http.get(`${JokeService.BASE_URL}/joke/Any`);
+  getRandomJoke(): Observable<Joke> {
+    return this.http.get<Joke>(`${JokeService.BASE_URL}/joke/Any`);
   }
 }

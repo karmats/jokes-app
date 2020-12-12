@@ -82,3 +82,30 @@ export class AppComponent implements OnInit {
   }
 }
 ```
+
+## Step 4 - Joke type
+
+```bash
+$ ng g interface models/joke
+```
+
+`joke.ts`
+
+```typescript
+export interface Joke {
+  category: string;
+  type: "single" | "twopart";
+  joke: string;
+  setup: string;
+  delivery: string;
+}
+```
+
+`joke.service.ts`
+
+```typescript
+getRandomJoke(): Observable<Joke> {
+  return this.http.get<Joke>(`${JokeService.BASE_URL}/joke/Any`);
+}
+```
+
