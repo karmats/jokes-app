@@ -21,8 +21,8 @@ export class JokeService {
       `${JokeService.BASE_URL}/joke/Any`,
       {
         params: {
-          contains: contains,
-          type: type,
+          contains: contains ?? '',
+          type: type ?? '',
           amount: '10',
         },
       }

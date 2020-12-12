@@ -164,8 +164,8 @@ getJokes(contains?: string, type?: string): Observable<{ jokes: Joke[] }> {
     `${JokeService.BASE_URL}/joke/Any`,
     {
       params: {
-        contains: contains,
-        type: type,
+        contains: contains ?? '',
+        type: type ?? '',
         amount: '10',
       },
     }
@@ -193,4 +193,44 @@ findJokes(contains: string, type: string) {
 </select>
 ...
 <button (click)="findJokes(contains.value, type.value)">Get joke</button>
+```
+
+## Step 8 - Display the results
+
+`app.component.ts`
+
+```typescript
+export class AppComponent implements OnInit {
+  jokes: string[] = [];
+  constructor(private readonly jokeService: JokeService) {}
+
+  ngOnInit() {
+    this.jokeService.getJokes().subscribe((result) => {
+      this.jokes = this.jokesToText(result.jokes);
+    });
+  }
+
+  findJokes(contains: string, type: string) {
+    this.jokeService.getJokes(contains, type).subscribe((result) => {
+      this.jokes = this.jokesToText(result.jokes);
+    });
+  }
+
+  private jokesToText(jokes: Joke[]) {
+    return jokes.map((joke) => {
+      if (joke.type === "single") {
+        return joke.joke;
+      }
+      return `${joke.setup}\n${joke.delivery}`;
+    });
+  }
+}
+```
+
+`app.component.html`
+
+```html
+<div>
+  <p *ngFor="let joke of jokes">{{ joke }}</p>
+</div>
 ```

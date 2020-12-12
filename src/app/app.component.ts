@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Joke } from './models/joke';
 import { JokeService } from './services/joke.service';
 
 @Component({
@@ -7,22 +8,27 @@ import { JokeService } from './services/joke.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  joke = '';
+  jokes: string[] = [];
   constructor(private readonly jokeService: JokeService) {}
 
   ngOnInit() {
-    this.jokeService.getRandomJoke().subscribe((joke) => {
-      if (joke.type === 'single') {
-        this.joke = joke.joke;
-      } else {
-        this.joke = `${joke.setup}\n${joke.delivery}`;
-      }
+    this.jokeService.getJokes().subscribe((result) => {
+      this.jokes = this.jokesToText(result.jokes);
     });
   }
 
   findJokes(contains: string, type: string) {
-    this.jokeService.getJokes(contains, type).subscribe((jokes) => {
-      console.log(jokes);
-    })
+    this.jokeService.getJokes(contains, type).subscribe((result) => {
+      this.jokes = this.jokesToText(result.jokes);
+    });
+  }
+
+  private jokesToText(jokes: Joke[]) {
+    return jokes.map((joke) => {
+      if (joke.type === 'single') {
+        return joke.joke;
+      }
+      return `${joke.setup}\n${joke.delivery}`;
+    });
   }
 }
