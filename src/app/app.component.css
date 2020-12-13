@@ -1,0 +1,31 @@
+.container {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.filter-container {
+  background-color: #fff;
+  padding: 25px;
+  margin-bottom: 40px;
+}
+
+.filter-control {
+  max-width: 40%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.button {
+  background: darkmagenta;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+}
+
+.results {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  row-gap: 30px;
+}

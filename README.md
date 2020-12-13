@@ -15,7 +15,8 @@ $ ng new jokes-app
 Verify that it works with
 
 ```
-ng serve
+$ cd jokes-app
+$ ng serve
 ```
 
 ## Step 2 - Scaffolding
@@ -30,10 +31,9 @@ ng serve
 
 ```css
 body {
+  background: #f6f6f6;
   font-family: "Lato", sans-serif;
-  font-size: 16px;
   padding: 40px;
-  box-sizing: border-box;
 }
 ```
 
@@ -151,7 +151,7 @@ getRandomJoke(): Observable<Joke> {
     <option value="twopart">Two part</option>
   </select>
 </div>
-<button>Get joke</button>
+<button>Get jokes</button>
 ```
 
 ## Step 7 - Find jokes
@@ -166,7 +166,7 @@ getJokes(contains?: string, type?: string): Observable<{ jokes: Joke[] }> {
       params: {
         contains: contains ?? '',
         type: type ?? '',
-        amount: '10',
+        amount: '8',
       },
     }
   );
@@ -192,7 +192,7 @@ findJokes(contains: string, type: string) {
   ...
 </select>
 ...
-<button (click)="findJokes(contains.value, type.value)">Get joke</button>
+<button (click)="findJokes(contains.value, type.value)">Get jokes</button>
 ```
 
 ## Step 8 - Display the results
@@ -264,7 +264,7 @@ export class JokeCardComponent implements OnInit {
 `joke-card.component.html`
 
 ```html
-<p>{{ text }}</p>
+<div>{{ text }}</div>
 ```
 
 `app.component.ts`
@@ -279,4 +279,57 @@ this.jokes = result.jokes;
 
 ```html
 <app-joke-card *ngFor="let joke of jokes" [joke]="joke"></app-joke-card>
+```
+
+## Step 10 - Style the app.component
+
+`app.component.html`
+
+```html
+<div class="container">
+  <div class="filter-container">
+    <div class="filter-control">...</div>
+    <div class="filter-control">...</div>
+    <button class="button" (click)="findJokes(contains.value, type.value)">
+      Get jokes
+    </button>
+  </div>
+  <div class="results">...</div>
+</div>
+```
+
+`app.component.css`
+
+```css
+.container {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.filter-container {
+  background-color: #fff;
+  padding: 25px;
+  margin-bottom: 40px;
+}
+
+.filter-control {
+  max-width: 40%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.button {
+  background: darkmagenta;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+}
+
+.results {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  row-gap: 30px;
+}
 ```

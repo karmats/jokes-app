@@ -1,17 +1,20 @@
-<div>
-  <label for="input">Contains text</label>
-  <input id="input" #contains />
-</div>
-<div>
-  <label for="select">Type</label>
-  <select id="select" #type>
-    <option value="">Any</option>
-    <option value="single">Single</option>
-    <option value="twopart">Two part</option>
-  </select>
-</div>
-<button (click)="findJokes(contains.value, type.value)">Get joke</button>
-
-<div>
-  <app-joke-card *ngFor="let joke of jokes" [joke]="joke"></app-joke-card>
+<div class="container">
+  <div class="filter-container">
+    <div class="filter-control">
+      <label for="input">Contains text</label>
+      <input id="input" #contains />
+    </div>
+    <div class="filter-control">
+      <label for="select">Type</label>
+      <select id="select" #type>
+        <option value="">Any</option>
+        <option value="single">Single</option>
+        <option value="twopart">Two part</option>
+      </select>
+    </div>
+    <button class="button" (click)="findJokes(contains.value, type.value)">Get jokes</button>
+  </div>
+  <div class="results">
+    <app-joke-card *ngFor="let joke of jokes" [joke]="joke"></app-joke-card>
+  </div>
 </div>

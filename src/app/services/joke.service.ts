@@ -23,7 +23,7 @@ export class JokeService {
         params: {
           contains: contains ?? '',
           type: type ?? '',
-          amount: '10',
+          amount: '8',
         },
       }
     );
