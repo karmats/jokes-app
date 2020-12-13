@@ -1,0 +1,17 @@
+.card {
+  width: 200px;
+  min-height: 150px;
+  padding: 20px;
+  background-color: #ffffff;
+  border: 1px solid darkgray;
+  position: relative;
+}
+
+.category {
+  text-transform: uppercase;
+  font-size: 10px;
+  color: darkgray;
+  position: absolute;
+  bottom: 5px;
+  left: 20px;
+}

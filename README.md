@@ -32,7 +32,7 @@ $ ng serve
 ```css
 body {
   background: #f6f6f6;
-  font-family: "Lato", sans-serif;
+  font-family: "Segoe UI", sans-serif;
   padding: 40px;
 }
 ```
@@ -43,15 +43,11 @@ body {
 $ ng g service services/joke
 ```
 
-Add `HttpClientModule` in `app.module.ts` imports array.
-
 `app.module.ts`
 
 ```typescript
   imports: [BrowserModule, HttpClientModule],
 ```
-
-Create method `getRandomJoke()`
 
 `joke.service.ts`
 
@@ -66,8 +62,6 @@ export class JokeService {
   }
 }
 ```
-
-Inject the service and call the method.
 
 `app.component.ts`
 
@@ -331,5 +325,38 @@ this.jokes = result.jokes;
   flex-wrap: wrap;
   justify-content: space-between;
   row-gap: 30px;
+}
+```
+
+## Step 11 - Finish joke-card.component
+
+`joke-card.component.html`
+
+```html
+<div class="card">
+  <span>{{ text }}</span>
+  <span class="category">{{ joke.category }}</span>
+</div>
+```
+
+`joke-card.component.css`
+
+```css
+.card {
+  width: 200px;
+  min-height: 150px;
+  padding: 20px;
+  background-color: #ffffff;
+  border: 1px solid darkgray;
+  position: relative;
+}
+
+.category {
+  text-transform: uppercase;
+  font-size: 10px;
+  color: darkgray;
+  position: absolute;
+  bottom: 5px;
+  left: 20px;
 }
 ```
