@@ -348,6 +348,7 @@ this.jokes = result.jokes;
   padding: 20px;
   background-color: #ffffff;
   border: 1px solid darkgray;
+  word-break: break-word;
   position: relative;
 }
 
@@ -359,4 +360,15 @@ this.jokes = result.jokes;
   bottom: 5px;
   left: 20px;
 }
+```
+
+## Step 12 - No jokes found
+
+`app.component.html`
+
+```html
+<div class="results" *ngIf="jokes?.length; else noResults">
+  <app-joke-card *ngFor="let joke of jokes" [joke]="joke"></app-joke-card>
+</div>
+<ng-template #noResults> No jokes found :( </ng-template>
 ```

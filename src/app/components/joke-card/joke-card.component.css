@@ -4,6 +4,7 @@
   padding: 20px;
   background-color: #ffffff;
   border: 1px solid darkgray;
+  word-break: break-word;
   position: relative;
 }
 

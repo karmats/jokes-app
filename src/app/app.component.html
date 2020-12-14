@@ -12,9 +12,12 @@
         <option value="twopart">Two part</option>
       </select>
     </div>
-    <button class="button" (click)="findJokes(contains.value, type.value)">Get jokes</button>
+    <button class="button" (click)="findJokes(contains.value, type.value)">
+      Get jokes
+    </button>
   </div>
-  <div class="results">
+  <div class="results" *ngIf="jokes?.length; else noResults">
     <app-joke-card *ngFor="let joke of jokes" [joke]="joke"></app-joke-card>
   </div>
+  <ng-template #noResults> No jokes found :( </ng-template>
 </div>
